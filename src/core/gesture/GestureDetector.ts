@@ -1,5 +1,4 @@
 import { GESTURE_CONSTANTS } from '../../shared/constants';
-import { midpoint } from '../../shared/math';
 import type { Vec2 } from '../../shared/math';
 import type {
   GestureState,
@@ -282,7 +281,7 @@ export class GestureDetector implements IGestureDetector {
     timestamp: number,
     center: Vec2,
     firingDirection: Vec2,
-    chargeIntensity: number
+    _chargeIntensity: number
   ): void {
     const chargeTime = this.computeChargeTime(timestamp);
     this.firingStartTime = timestamp;

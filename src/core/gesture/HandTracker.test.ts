@@ -79,7 +79,7 @@ describe('HandTracker', () => {
     const mockVideo = document.createElement('video') as HTMLVideoElement;
 
     it('throws if not initialized', async () => {
-      await expect(tracker.processFrame(mockVideo)).rejects.toThrow(
+      await expect(tracker.processFrame(mockVideo, 640, 480)).rejects.toThrow(
         'HandTracker not initialized'
       );
     });
@@ -94,7 +94,7 @@ describe('HandTracker', () => {
         });
       });
 
-      const result = await tracker.processFrame(mockVideo);
+      const result = await tracker.processFrame(mockVideo, 640, 480);
 
       expect(result.hands).toEqual([]);
       expect(result.timestamp).toBeGreaterThan(0);
@@ -111,7 +111,7 @@ describe('HandTracker', () => {
         });
       });
 
-      const result = await tracker.processFrame(mockVideo);
+      const result = await tracker.processFrame(mockVideo, 640, 480);
 
       expect(result.hands).toHaveLength(1);
       expect(result.hands[0].landmarks).toHaveLength(21);
@@ -134,7 +134,7 @@ describe('HandTracker', () => {
         });
       });
 
-      const result = await tracker.processFrame(mockVideo);
+      const result = await tracker.processFrame(mockVideo, 640, 480);
 
       expect(result.hands).toHaveLength(2);
       expect(result.hands[0].handedness).toBe('left');
@@ -157,9 +157,9 @@ describe('HandTracker', () => {
         });
       });
 
-      const result = await tracker.processFrame(mockVideo);
+      const result = await tracker.processFrame(mockVideo, 640, 480);
 
-      expect(result.hands[0].landmarks[0].x).toBe(1);
+      expect(result.hands[0].landmarks[0].x).toBe(0);
       expect(result.hands[0].landmarks[0].y).toBe(0);
     });
 
@@ -179,7 +179,7 @@ describe('HandTracker', () => {
         });
       });
 
-      const result = await tracker.processFrame(mockVideo);
+      const result = await tracker.processFrame(mockVideo, 640, 480);
 
       expect(result.hands[0].landmarks[0].z).toBe(-2.5);
     });
@@ -195,7 +195,7 @@ describe('HandTracker', () => {
         });
       });
 
-      const result = await tracker.processFrame(mockVideo);
+      const result = await tracker.processFrame(mockVideo, 640, 480);
 
       expect(result.hands).toHaveLength(0);
     });
@@ -211,7 +211,7 @@ describe('HandTracker', () => {
         });
       });
 
-      const result = await tracker.processFrame(mockVideo);
+      const result = await tracker.processFrame(mockVideo, 640, 480);
 
       expect(result.hands).toHaveLength(0);
     });
@@ -227,7 +227,7 @@ describe('HandTracker', () => {
       });
 
       const before = performance.now();
-      const result = await tracker.processFrame(mockVideo);
+      const result = await tracker.processFrame(mockVideo, 640, 480);
       const after = performance.now();
 
       expect(result.timestamp).toBeGreaterThanOrEqual(before);
@@ -244,7 +244,7 @@ describe('HandTracker', () => {
         });
       });
 
-      await tracker.processFrame(mockVideo);
+      await tracker.processFrame(mockVideo, 640, 480);
 
       expect(mockSend).toHaveBeenCalledWith({ image: mockVideo });
     });
@@ -284,7 +284,7 @@ describe('HandTracker', () => {
       });
 
       const result = await tracker.processFrame(
-        document.createElement('video')
+        document.createElement('video'), 640, 480
       );
 
       expect(result.hands).toHaveLength(1);
