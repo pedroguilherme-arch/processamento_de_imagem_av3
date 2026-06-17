@@ -5,7 +5,7 @@ Aplicação web de visão computacional em tempo real que detecta gestos das mã
 ## Demo
 
 1. Junte as duas mãos na frente da câmera → energia começa a carregar
-2. Afaste as mãos rapidamente → dispara o Kamehameha!
+2. Feche os dedos cerrando o punho, para disparar 
 
 ## Tech Stack
 
