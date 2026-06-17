@@ -90,6 +90,8 @@ function createIdleState(): RenderState {
     firingDirection: null,
     flashActive: false,
     shakeActive: false,
+    canvasHeight: 480,
+    isFullyCharged: false,
   };
 }
 
@@ -105,6 +107,8 @@ function createChargingState(intensity = 0.5): RenderState {
     firingDirection: null,
     flashActive: false,
     shakeActive: false,
+    canvasHeight: 480,
+    isFullyCharged: intensity >= 0.5,
   };
 }
 
@@ -120,6 +124,8 @@ function createFiringState(intensity = 0.8): RenderState {
     firingDirection: { x: 1, y: 0 },
     flashActive: true,
     shakeActive: true,
+    canvasHeight: 480,
+    isFullyCharged: true,
   };
 }
 

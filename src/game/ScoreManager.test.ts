@@ -176,7 +176,6 @@ describe('ScoreManager — multiplicador de pontos em ação', () => {
 
   it('combo cresce continuamente sem expirar', () => {
     const sm = new ScoreManager();
-    const window = 3000;
 
     // 9 hits em 100ms de intervalo → combo = 9, mult = 4
     for (let i = 0; i < 9; i++) {

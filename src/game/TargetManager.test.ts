@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { TargetManager, rayIntersectsCircle } from './TargetManager';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -114,10 +114,6 @@ describe('TargetManager — spawn de alvos', () => {
 
 describe('TargetManager — colisão e remoção de alvos mortos', () => {
   it('checkBeamCollision detecta alvo no caminho do raio', () => {
-    const tm = new TargetManager({ spawnIntervalMs: 99999 }); // não spawna sozinho
-    // Força spawn via update com canvas gigante mas intervalo nunca passa
-    // Injetamos um alvo diretamente via applyBeamHit não — usamos a API pública
-
     // Como não há setter direto, vamos usar um intervalo que spawna imediatamente
     // e depois testar a colisão com o alvo spawnado próximo à borda
     const tmFast = new TargetManager({
@@ -152,9 +148,6 @@ describe('TargetManager — colisão e remoção de alvos mortos', () => {
   });
 
   it('alvos dead são removidos na próxima atualização', () => {
-    // spawnIntervalMs alto para não spawnar novos alvos durante o teste
-    const tm = new TargetManager({ spawnIntervalMs: 99999, maxTargets: 5 });
-
     // Injeta um alvo manualmente via spawn único
     const tmSpawn = new TargetManager({ spawnIntervalMs: 1, maxTargets: 1 });
     tmSpawn.update(2, 800, 600, 2); // spawna 1 alvo
